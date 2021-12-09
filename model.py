@@ -3,6 +3,7 @@ from fastapi import HTTPException
 
 
 class ToDo(BaseModel):
+    nanoid: str
     title: str
     description: str
 

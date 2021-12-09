@@ -27,12 +27,12 @@ async def get_todo():
     return response
 
 
-@app.get("/api/get-todo/{title}", response_model=ToDo)
-async def get_todo_id(title):
-    response = await fetch_one_todo(title)
-    if response:
-        return response
-    raise HTTPException(404, f"There is no todo item with this title: {title}")
+@app.get("/api/get-todo/{nanoid}", response_model=ToDo)
+async def get_todo_id(nanoid):
+    todo = await fetch_one_todo(nanoid)
+    if todo:
+        return todo
+    raise HTTPException(404)
 
 
 @app.post("/api/add-todo", response_model=ToDo)
@@ -43,17 +43,17 @@ async def post_todo(todo: ToDo):
     raise HTTPException(400, "Something went wrong")
 
 
-@app.put("/api/update-todo/{title}", response_model=ToDo)
-async def put_todo(title: str, desc: str):
-    response = await update_todo(title, desc)
+@app.put("/api/update-todo/{nanoid}", response_model=ToDo)
+async def put_todo(nanoid, title, desc):
+    response = await update_todo(nanoid, title, desc)
     if response:
         return response
-    raise HTTPException(404, f"There is no todo item with this title: {title}")
+    raise HTTPException(404)
 
 
-@app.delete("/api/delete-todo/{title}")
-async def delete_todo(title):
-    response = await remove_todo(title)
+@app.delete("/api/delete-todo/{nanoid}")
+async def delete_todo(nanoid):
+    response = await remove_todo(nanoid)
     if response:
         return response
-    raise HTTPException(404, f"There is no todo item with this title: {title}")
+    raise HTTPException(404)
