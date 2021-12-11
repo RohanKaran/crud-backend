@@ -6,7 +6,7 @@ from dotenv import dotenv_values
 config = dotenv_values(".env")
 DATABASE_URI = config.get("DATABASE_URI")
 if os.getenv("DATABASE_URI"):
-    DATABASE_URI = os.environ["DATABASE_URI"]
+    DATABASE_URI = os.getenv("DATABASE_URI")
 client = motor.motor_asyncio.AsyncIOMotorClient(DATABASE_URI)
 database = client.todoList
 collection = database.todo
