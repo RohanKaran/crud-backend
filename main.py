@@ -2,11 +2,13 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from db import *
 from model import ToDo
+from UpdateModel import UpdateToDo
+import json
 
 
 app = FastAPI()
 
-origins = ["*"]
+origins = ["http://localhost:3000"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -21,7 +23,7 @@ async def read_root():
     return "Hi!"
 
 
-@app.get("/api/todo")
+@app.get("/api/get-todo")
 async def get_todo():
     response = await fetch_all_todos()
     return response
@@ -44,11 +46,11 @@ async def post_todo(todo: ToDo):
 
 
 @app.put("/api/update-todo/{nanoid}", response_model=ToDo)
-async def put_todo(nanoid, title, desc):
-    response = await update_todo(nanoid, title, desc)
+async def put_todo(nanoid: str, updatetodo: UpdateToDo):
+    response = await update_todo(nanoid, updatetodo.dict())
     if response:
         return response
-    raise HTTPException(404)
+    raise HTTPException(404, 'wrong')
 
 
 @app.delete("/api/delete-todo/{nanoid}")

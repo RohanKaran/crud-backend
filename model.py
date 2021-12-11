@@ -6,10 +6,11 @@ class ToDo(BaseModel):
     nanoid: str
     title: str
     description: str
+    addedDT: str
+    updatedDT: str
 
     @validator('title')
     def empty_title(cls, title):
-        t = title.strip()
-        if len(t) <= 0:
+        if len(title) <= 0:
             raise HTTPException(400, "Something went wrong")
-        return t
+        return title
