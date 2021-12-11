@@ -8,7 +8,7 @@ import json
 
 app = FastAPI()
 
-origins = ["http://localhost:3000"]
+origins = ["https://rohankaran.github.io"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
