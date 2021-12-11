@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from db import *
 from model import ToDo
 from UpdateModel import UpdateToDo
-import json
 
 
 app = FastAPI()
@@ -20,7 +19,7 @@ app.add_middleware(
 
 @app.get("/")
 async def read_root():
-    return "Hi!"
+    return {"Hi!"}
 
 
 @app.get("/api/get-todo")
