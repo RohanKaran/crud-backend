@@ -23,7 +23,7 @@ async def fetch_all_todos():
 
 
 async def create_todo(todo):
-    document = todo.dict()
+    document = todo
     await collection.insert_one(document)
     return document
 
