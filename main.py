@@ -6,7 +6,7 @@ from UpdateModel import UpdateToDo
 
 app = FastAPI()
 
-origins = ["https://rohankaran.github.io/crud-frontend/"]
+origins = ["https://rohankaran.github.io/"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
