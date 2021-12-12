@@ -1,9 +1,11 @@
 import os
 from model import *
 import motor.motor_asyncio
-from dotenv import dotenv_values
-
-DATABASE_URI = "mongodb+srv://crud-app:12345crud@crud-app.ydmdq.mongodb.net/todoList?retryWrites=true&w=majority"
+# from dotenv import dotenv_values
+#
+# config = dotenv_values(".env")
+# DATABASE_URI = config.get("DATABASE_URI")
+DATABASE_URI = os.getenv('DATABASE_URI')
 client = motor.motor_asyncio.AsyncIOMotorClient(DATABASE_URI)
 database = client.todoList
 collection = database.todo
