@@ -4,10 +4,9 @@ from db import *
 from model import ToDo
 from UpdateModel import UpdateToDo
 
-
 app = FastAPI()
 
-origins = ["https://rohankaran.github.io"]
+origins = ["*"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -25,6 +24,7 @@ async def read_root():
 @app.get("/api/get-todo")
 async def get_todo():
     response = await fetch_all_todos()
+    if not response: raise HTTPException(404)
     return response
 
 
