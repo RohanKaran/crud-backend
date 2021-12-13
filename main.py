@@ -46,6 +46,9 @@ async def post_todo(todo: ToDo):
 
 @app.put("/api/update-todo/{nanoid}", response_model=ToDo)
 async def put_todo(nanoid: str, updatetodo: UpdateToDo):
+    todo = await fetch_one_todo(nanoid)
+    if not todo:
+        raise HTTPException(400, "Bad request!")
     await update_todo(nanoid, updatetodo.dict())
 
 
