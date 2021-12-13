@@ -32,8 +32,6 @@ async def create_todo(todo):
 
 async def update_todo(nanoid, data):
     await collection.update_one({"nanoid": nanoid}, {"$set": data})
-    document = await collection.find_one({"nanoid": nanoid})
-    return document
 
 
 async def remove_todo(nanoid):

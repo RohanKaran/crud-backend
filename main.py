@@ -46,10 +46,7 @@ async def post_todo(todo: ToDo):
 
 @app.put("/api/update-todo/{nanoid}", response_model=ToDo)
 async def put_todo(nanoid: str, updatetodo: UpdateToDo):
-    response = await update_todo(nanoid, updatetodo.dict())
-    if response:
-        return response
-    raise HTTPException(404, 'wrong')
+    await update_todo(nanoid, updatetodo.dict())
 
 
 @app.delete("/api/delete-todo/{nanoid}")
