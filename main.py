@@ -53,6 +53,7 @@ async def put_todo(nanoid: str, updatetodo: UpdateToDo):
     if not todo:
         raise HTTPException(400, "Bad request!")
     await update_todo(nanoid, updatetodo.dict())
+    return {"Updated"}
 
 
 @app.delete("/api/delete-todo/{nanoid}")
