@@ -33,7 +33,7 @@ async def get_todo_id(nanoid):
     todo = await fetch_one_todo(nanoid)
     if todo:
         return todo
-    raise HTTPException(404)
+    raise HTTPException(400, "Bad request" )
 
 
 @app.post("/api/add-todo", response_model=ToDo)
