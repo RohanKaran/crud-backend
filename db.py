@@ -20,7 +20,7 @@ async def fetch_all_todos():
     todos = []
     cursor = collection.find()
     async for document in cursor:
-        todos.append(ToDo(**document).json())
+        todos.append(ToDo(**document))
     return todos
 
 
