@@ -27,7 +27,6 @@ async def read_root():
 @app.get("/api/get-todo")
 async def get_todo():
     response = await fetch_all_todos()
-    if not response: raise HTTPException(404)
     return response
 
 
