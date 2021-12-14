@@ -7,7 +7,8 @@ from UpdateModel import UpdateToDo
 app = FastAPI()
 
 origins = [
-    "*",
+    "https://rohankaran.github.com",
+    "https://rohankaran.github.com/crud-frontend",
            ]
 app.add_middleware(
     CORSMiddleware,
@@ -59,5 +60,5 @@ async def put_todo(nanoid: str, updatetodo: UpdateToDo):
 async def delete_todo(nanoid):
     response = await remove_todo(nanoid)
     if response:
-        return response
+        return "Deleted"
     raise HTTPException(404)
